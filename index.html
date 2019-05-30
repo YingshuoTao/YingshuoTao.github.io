@@ -1,39 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>无韵</title>
-    <style rel="stylesheet">
-      body {
-        text-align: center;
-        font-family: Microsoft Yahei;
-        font-size: 20px;
-        line-height: 1;
-      }
-    </style>
-  </head>
-  <body>
-    <h3>无韵</h3>
-    <div>
-      <p>天灾之外，如何处死一个夜晚？</p>
-      <p>把睡眠搓成一段麻绳，</p>
-      <p>绑架夜幕下所有尾气、易拉罐、闯红灯的人。</p>
-      <p>熬干梦境，</p>
-      <p>把渣滓遗留在床单上。</p>
-      <p>楼道里的猫开始发酵。</p>
-      <p>街边的行人失去了轮廓，</p>
-      <p>化作大漠夕阳下的烟尘。</p>
-    </div>
-    <br>
-    <div>
-      <p>鸽群在一声鸽哨之后出发，</p>
-      <p>追逐傍晚的余晖飞成一条直线，</p>
-      <p>作为缝合的针脚，</p>
-      <p>爬上即将来临的夜晚的脊背。</p>
-      <p>我趴下来，伸出舌头，</p>
-      <p>舔舔北半球。</p>
-    </div>
-  </body>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+  <link href="favicon.ico" rel="shortcut icon">
+  <link href="main.css" rel="stylesheet">
+  <title>tys's Minesweeper</title>
+</head>
+<body>
+  <div id="app" v-cloak>
+    <v-app>
+      <v-content>
+        <v-container fluid>
+          <v-toolbar dark color="primary">
+            <v-toolbar-title class="white--text">tys's Minesweeper</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-btn icon @click="init">
+              <v-icon>refresh</v-icon>  <!-- reset -->
+            </v-btn>
+            <v-btn icon @click="config">
+              <v-icon>settings</v-icon>  <!-- reconfig -->
+            </v-btn>
+          </v-toolbar>
+          <v-layout py-1 overflow-x-auto @click.right.prevent>  <!-- disable browser's right-click menu -->
+            <v-flex v-for="col in cols" :key="col">
+              <v-flex v-for="row in rows" :key="row" class="px-1">
+                <m-grid ref="grids" :col="col" :row="row"></m-grid>  <!-- pass in the unique coordinates -->
+              </v-flex>
+            </v-flex>
+          </v-layout>
+          <v-footer color="primary">
+            <v-layout px-3 justify-space-between class="white--text">
+              <v-flex class="text-xs-left">Total Mines: {{ mines }}</v-flex>
+              <v-flex class="text-xs-center">Mines Remaining: {{ remaining }}</v-flex>
+              <v-flex class="text-xs-right">Elapsed Time: {{ time }}</v-flex>
+            </v-layout>
+          </v-footer>
+          <m-dialog :time="time" ref="defeatDialog">Oops!</m-dialog>  <!-- defeat dialog -->
+          <m-dialog :time="time" ref="victoryDialog">Hooray!</m-dialog>  <!-- victory dialog -->
+          <m-panel ref="panel"></m-panel>  <!-- settings panel -->
+        </v-container>
+      </v-content>
+    </v-app>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+  <script src="components.js"></script>
+  <script src="main.js"></script>
+  <script>
+  </script>
+</body>
 </html>
