@@ -25,11 +25,11 @@ const app = new Vue({
         },
         // Boolean, whenever a grid's status turns into "boomed", gameover.
         defeat () {
-            return this.loaded && this.gridArr.map(grid => grid.status === 'boomed').includes(true)
+            return this.loaded && this.gridArr.some(grid => grid.status === 'boomed')
         },
         // Boolean, when all grids without mines are revealed, player wins.
         victory () {
-            return this.loaded && !this.gridArr.map(grid => !grid.mine && !grid.revealed).includes(true)
+            return this.loaded && !this.gridArr.some(grid => !grid.mine && !grid.revealed)
         },
     },
     // whenever "defeat" / "victory" status turns into true, game ends
