@@ -2,6 +2,16 @@
     display: None;
 }
 
+.container.fluid {
+    padding: 0px;
+}
+
+.v-toolbar__content,
+.v-toolbar__extension {
+    height: 56px !important;
+    padding: 0 16px;
+}
+
 .overflow-x-auto {
     overflow-x: auto;
 }
