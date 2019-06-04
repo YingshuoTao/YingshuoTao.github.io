@@ -156,18 +156,17 @@ Vue.component('m-panel', {
         rules() {
             return {
                 rows: v => {
-                    if (v < 5) return 'Must be over 5!'
+                    if (v < 5) return 'Must be greater than or equal to 5!'
                     if (!Number.isInteger(Number(v))) return 'Must be Integer!'
                     return true
                 },
                 cols: v => {
-                    if (v < 5) return 'Must be over 5!'
+                    if (v < 5) return 'Must be greater than or equal to 5!'
                     if (!Number.isInteger(Number(v))) return 'Must be Integer!'
                     return true
                 },
                 mineRatio: v => {
                     if (v < 5 || v > 40) return 'Must be beween 5 and 40!'
-                    if (!Number.isInteger(Number(v))) return 'Must be Integer!'
                     return true
                 },
             }
@@ -200,7 +199,11 @@ Vue.component('m-panel', {
                 this.$root.rows = Number(this.rows)
                 this.$root.cols = Number(this.cols)
                 this.$root.mineRatio = Number(this.mineRatio)
-                // async is necessary to ensure the new configs work
+                // avoid potential problems while rebuilding DOM
+                this.$root.gridArr.forEach(grid => {
+                    grid.revealed = false
+                })
+                // async is necessary to ensure the new configs work properly
                 this.$nextTick(() => {
                     this.$root.build()
                     this.display = false
