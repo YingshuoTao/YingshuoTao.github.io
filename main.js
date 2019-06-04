@@ -55,15 +55,13 @@ const app = new Vue({
         build () {
             // status protection
             this.loaded = false
+            // the components may be reused while rebuilding DOM, so that sorting is required to make sure the references are in the right order
+            this.gridArr = [...this.$refs.grids].sort((a, b) => a.row - b.row)
             // reshape to 2d-array
-            let grids = []
-            for (let x = 0; x < this.$refs.grids.length; x += this.rows) {
-                grids.push(this.$refs.grids.slice(x, x + this.rows))
+            this.gridMat = []
+            for (let i = 0; i < this.rows; i++) {
+                this.gridMat.push(this.gridArr.slice(i * this.cols, (i + 1) * this.cols))
             }
-            // transpose to [row][col] type coordinates
-            this.gridMat = grids[0].map((_, i) => grids.map(x => x[i]))
-            // flattened to 1d-array
-            this.gridArr = this.gridMat.flat()
             this.loaded = true
             this.init()
         },
