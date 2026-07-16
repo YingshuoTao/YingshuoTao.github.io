@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html manifest="mypass.manifest">
+<head>
+	<title>MyPass</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<!-- only works if added the page to home screen on iOS  -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="icons/touch-icon-iphone-retina.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="icons/touch-icon-ipad-retina.png" />
+	<!-- css -->
+	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<style type="text/css">
+	.container {
+		width: auto;
+		max-width: 300px;
+	}
+	</style>
+	<!-- javascript -->
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/cryptojs/components/core-min.js"></script>
+	<script src="js/cryptojs/components/enc-base64-min.js"></script>
+	<script src="js/cryptojs/rollups/hmac-sha512.js"></script>
+	<script src="js/ios-bundle.js"></script>
+</head>
+<body>
+	<div id="content" class="container">
+		<h1 class="page-header">MyPass</h1>
+
+		<label class="control-label" for="salt">Salt</label>
+		<input type="email" class="input-block-level" id="salt" placeholder="Anything you like">
+
+		<label class="control-label" for="passphrase">Passphrase</label>
+		<input type="password" class="input-block-level" id="passphrase" placeholder="Your Secret">
+
+		<label class="control-label" for="site">Site</label>
+		<input type="url" class="input-block-level" id="site" placeholder="example.com"
+		autocapitalize="off" autocorrect="off" autocomplete="off">
+
+		<p>Password</p>
+		<p id="passwd" class="muted">Will appear here, long press to select</p>
+
+		<button type="button" class="btn btn-large btn-block" id="genbtn">Generate</button>
+
+		<div id="info" class="text-info"></div>
+
+		<hr />
+
+		<label class="control-label" for="username">User name</label>
+		<input type="text" class="input-block-level" id="username" placeholder="Optional to save user name"
+		autocapitalize="off" autocorrect="off">
+
+		<label class="control-label" for="num_symbol">Symbols</label>
+		<select class="input-block-level" id="num_symbol">
+			<option>0</option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+		</select>
+
+		<label class="control-label" for="length">Length</label>
+		<select class="input-block-level" id="length">
+			<option>8</option>
+			<option>9</option>
+			<option>10</option>
+			<option>11</option>
+			<option>12</option>
+			<option>13</option>
+			<option>14</option>
+			<option>15</option>
+			<option selected="selected">16</option>
+			<option>17</option>
+			<option>18</option>
+			<option>19</option>
+			<option>20</option>
+		</select>
+
+		<label class="control-label" for="generation">Generation</label>
+		<select class="input-block-level" id="generation">
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>
+			<option>5</option>
+			<option>6</option>
+			<option>7</option>
+			<option>8</option>
+			<option>9</option>
+			<option>10</option>
+			<option>11</option>
+			<option>12</option>
+			<option>13</option>
+			<option>14</option>
+			<option>15</option>
+			<option>16</option>
+			<option>17</option>
+			<option>18</option>
+			<option>19</option>
+			<option>20</option>
+		</select>
+
+		<label class="control-label" for="hashes">Hashes</label>
+		<select class="input-block-level" id="hashes">
+			<option value="1">2^1</option>
+			<option value="2">2^2</option>
+			<option value="3">2^3</option>
+			<option value="4">2^4</option>
+			<option value="5">2^5</option>
+			<option value="6">2^6</option>
+			<option value="7">2^7</option>
+			<option value="8" selected="selected">2^8</option>
+			<option value="9">2^9</option>
+			<option value="10">2^10</option>
+			<option value="11">2^11</option>
+			<option value="12">2^12</option>
+			<option value="13">2^13</option>
+			<option value="14">2^14</option>
+			<option value="15">2^15</option>
+			<option value="16">2^16</option>
+		</select>
+
+		<div class="muted" id="credit">
+			<p>Add this page to home screen for easy access and offline use.</p>
+		</div>
+	</div>
+</body>
+</html>
