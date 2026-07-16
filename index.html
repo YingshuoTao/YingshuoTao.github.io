@@ -1,55 +1,30 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/vuetify@1.x/dist/vuetify.min.css" rel="stylesheet">
-  <link href="favicon.ico" rel="shortcut icon">
-  <link href="main.css" rel="stylesheet">
-  <title>tys's Minesweeper</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yingshuo Tao</title>
+  <style>
+    :root { color-scheme: light dark; font-family: system-ui, sans-serif; }
+    body { display: grid; min-height: 100vh; margin: 0; place-items: center; }
+    main { box-sizing: border-box; max-width: 44rem; padding: 2rem; width: 100%; }
+    h1 { margin-bottom: .35rem; }
+    p { line-height: 1.55; }
+    nav { display: grid; gap: 1rem; margin-top: 2rem; }
+    a { border: 1px solid currentColor; border-radius: .75rem; color: inherit; padding: 1.1rem 1.25rem; text-decoration: none; }
+    a:hover, a:focus-visible { background: CanvasText; color: Canvas; }
+    strong, span { display: block; }
+    span { margin-top: .25rem; opacity: .75; }
+  </style>
 </head>
 <body>
-  <div id="app" v-cloak>
-    <v-app>
-      <v-content>
-        <v-container fluid>
-          <v-toolbar dark color="primary">
-            <v-toolbar-title class="white--text">tys's Minesweeper</v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-btn icon @click="init">
-              <v-icon>refresh</v-icon>  <!-- reset -->
-            </v-btn>
-            <v-btn icon @click="config">
-              <v-icon>settings</v-icon>  <!-- reconfig -->
-            </v-btn>
-          </v-toolbar>
-          <v-layout py-1 overflow-x-auto @click.right.prevent>  <!-- disable browser's right-click menu -->
-            <v-flex v-for="col in cols" :key="col">
-              <v-flex v-for="row in rows" :key="row" class="px-1">
-                <m-grid ref="grids" :col="col" :row="row"></m-grid>  <!-- pass in the unique coordinates -->
-              </v-flex>
-            </v-flex>
-          </v-layout>
-          <v-footer color="primary">
-            <v-layout px-3 justify-space-between class="white--text">
-              <v-flex class="text-xs-left">Total Mines: {{ mines }}</v-flex>
-              <v-flex class="text-xs-center">Mines Remaining: {{ remaining }}</v-flex>
-              <v-flex class="text-xs-right">Elapsed Time: {{ time }}</v-flex>
-            </v-layout>
-          </v-footer>
-          <m-dialog :time="time" ref="defeatDialog">Oops!</m-dialog>  <!-- defeat dialog -->
-          <m-dialog :time="time" ref="victoryDialog">Hooray!</m-dialog>  <!-- victory dialog -->
-          <m-panel ref="panel"></m-panel>  <!-- settings panel -->
-        </v-container>
-      </v-content>
-    </v-app>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vuetify@1.x/dist/vuetify.min.js"></script>
-  <script src="components.js"></script>
-  <script src="main.js"></script>
-  <script>
-  </script>
+  <main>
+    <h1>Yingshuo Tao</h1>
+    <p>Choose a project.</p>
+    <nav aria-label="Projects">
+      <a href="/mypass/"><strong>MyPass</strong><span>Generate site-specific passwords locally.</span></a>
+      <a href="/minesweeper/"><strong>Minesweeper</strong><span>Play the classic puzzle game.</span></a>
+    </nav>
+  </main>
 </body>
 </html>
